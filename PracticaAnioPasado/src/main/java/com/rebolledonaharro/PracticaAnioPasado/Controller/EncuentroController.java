@@ -51,14 +51,7 @@ public class EncuentroController {
     @PostMapping("/short")
     public ResponseEntity<EncuentroDTO> add(@RequestBody EncuentroDTO eDTO){
 
-        encuentroRepository.save(Encuentro.builder()
-                        .id(eDTO.id())
-                        .usuario(usuarioRepository.findBy( ))
-                        .zona()
-
-                .build());
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(eDTO);
+        return null;
     }
 
 
