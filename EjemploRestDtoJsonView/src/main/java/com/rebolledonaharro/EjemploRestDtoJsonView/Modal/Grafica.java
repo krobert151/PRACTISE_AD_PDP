@@ -1,19 +1,17 @@
 package com.rebolledonaharro.EjemploRestDtoJsonView.Modal;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "grafica")
+@Builder
 public class Grafica {
     @Id
     @GeneratedValue
@@ -21,7 +19,15 @@ public class Grafica {
 
     private String nombre;
 
-    @OneToMany
-    private List<Computadora> computadoras;
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @Builder.Default
+    @OneToMany(
+            mappedBy = "grafica",
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.REMOVE,
+            orphanRemoval = true
+    )
+    private List<Computadora> computadoras = new ArrayList<>();
 
 }
